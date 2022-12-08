@@ -1,0 +1,15 @@
+.env
+.venv/
+*.log
+*.pot
+*.pyc
+.python-version
+__pychache__/
+db-volumes/
+logs/
+media/*
+staticfiles/
+db.sqlite3
+migrations/
+!media/default/
+node_modules/
