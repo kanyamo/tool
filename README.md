@@ -1,6 +1,6 @@
 # tools
 バックエンドをDjango, フロントエンドをReactで作成したアプリケーションです。
-[こちら](https://tools/kanyamo.com)が完成品になります。現在実装している機能は以下の通りです。
+[こちら](https://tools.kanyamo.com)が完成品になります。現在実装している機能は以下の通りです。
 - Todoリスト
 - リンク集
 
