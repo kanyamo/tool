@@ -1,7 +1,16 @@
 import React from 'react';
 import Todo from './Todo';
 
-const TodoList = ({todos, toggleTodo}) => {
+type TodoListProps = {
+  todos: Array<{
+    id: string,
+    name: string,
+    completed: boolean
+  }>,
+  toggleTodo: (id: string) => void
+}
+
+const TodoList: React.FC<TodoListProps> = ({todos, toggleTodo}) => {
   return (
     <ul>
       {todos.map((todo) =>

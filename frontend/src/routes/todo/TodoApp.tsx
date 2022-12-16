@@ -1,32 +1,40 @@
-import React from 'react'
+import * as React from 'react'
 import { useState, useRef } from 'react';
 import { v4 as uuidv4 } from "uuid";
 import TodoList from './components/TodoList';
 
-const TodoApp = () => {
+type todoType = {
+  id: string,
+  name: string,
+  completed: boolean
+}
 
-  const [todos, setTodos] = useState([]);
+const TodoApp: React.FC = () => {
 
-  const todoNameRef = useRef();
+  const [todos, setTodos] = useState<todoType[]>([]);
 
-  const handleAddTodo = (e) => {
+  const todoNameRef = useRef<HTMLInputElement>(null);
+
+  const handleAddTodo = (e: React.MouseEvent<HTMLButtonElement>) => {
     // タスクを追加する
-    const name = todoNameRef.current.value;
+    const name = todoNameRef.current!.value;
     if (name === "") return;
     setTodos((prevTodos) => {
       return [...prevTodos, {id: uuidv4(), name: name, completed: false}];
     });
-    todoNameRef.current.value = null;
+    todoNameRef.current!.value = "";
   };
 
-  const toggleTodo = (id) => {
+  const toggleTodo = (id: string) => {
     const newTodos = [...todos];
     const todo = newTodos.find((todo) => todo.id === id);
-    todo.completed = !todo.completed;
+    if (todo !== undefined) {
+      todo.completed = !todo.completed;
+    }
     setTodos(newTodos);
   };
 
-  const handleDeleteCompletedTodo = (e) => {
+  const handleDeleteCompletedTodo = (e: React.MouseEvent<HTMLButtonElement>) => {
     const newTodos = [...todos].filter((todo) => !todo.completed);
     setTodos(newTodos);
   };

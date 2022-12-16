@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 
-const Footer = () => {
+const SideBar = () => {
   return (
     <div>
       <ul>
@@ -19,4 +19,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default SideBar

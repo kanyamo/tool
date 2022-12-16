@@ -1,5 +1,5 @@
-import React from 'react'
-import LinkList from './components/LinkList'
+import React from 'react';
+import LinkList from './components/LinkList';
 import { v4 as uuidv4 } from "uuid";
 
 const LinksApp = () => {

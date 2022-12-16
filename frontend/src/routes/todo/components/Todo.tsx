@@ -1,6 +1,17 @@
 import React from 'react';
 
-const Todo = ({ todo, toggleTodo }) => {
+type todoType = {
+    id: string,
+    name: string,
+    completed: boolean
+}
+
+type TodoProps = {
+  todo: todoType,
+  toggleTodo: (id: string) => void
+}
+
+const Todo : React.FC<TodoProps> = ({ todo, toggleTodo }) => {
   const handleTodoClick = () => {
     toggleTodo(todo.id)
   }

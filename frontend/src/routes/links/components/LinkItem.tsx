@@ -1,6 +1,17 @@
 import React from 'react'
 
-const LinkItem = ({ link }) => {
+type linkType = {
+  id: string,
+  url: string,
+  name: string,
+  description: string
+}
+
+type linkProps = {
+  link: linkType
+}
+
+const LinkItem: React.FC<linkProps> = ({ link }) => {
   return (
     <div>
       <a href={ link.url }>
