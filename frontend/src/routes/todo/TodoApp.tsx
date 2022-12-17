@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { useState, useRef } from 'react';
 import { v4 as uuidv4 } from "uuid";
 import TodoList from './components/TodoList';
@@ -51,4 +51,4 @@ const TodoApp: React.FC = () => {
   )
 }
 
-export default TodoApp
+export default TodoApp;

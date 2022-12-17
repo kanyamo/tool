@@ -14,6 +14,9 @@ const SideBar = () => {
         <li>
           <Link to="links/">Links</Link>
         </li>
+        <li>
+          <Link to="pw_generator">PWGenerator</Link>
+        </li>
       </ul>
     </div>
   )

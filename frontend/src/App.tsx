@@ -4,6 +4,7 @@ import TodoApp from './routes/todo/TodoApp';
 import LinksApp from './routes/links/LinksApp';
 import Home from './routes/home/Home';
 import NoMatch from './routes/no_match/NoMatch';
+import PWGeneratorApp from './routes/pw_generator/PWGeneratorApp';
 import Sidebar from './sidebar/Sidebar';
 import { Routes, Route } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ function App(): React.ReactElement {
               <Route path="/" element={<Home></Home>}></Route>
               <Route path="todo/" element={<TodoApp></TodoApp>}></Route>
               <Route path="links/" element={<LinksApp></LinksApp>}></Route>
+              <Route path="pw_generator" element={<PWGeneratorApp></PWGeneratorApp>}></Route>
               <Route path="*" element={<NoMatch></NoMatch>}></Route>
             </Routes>
           </div>
