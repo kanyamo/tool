@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from "uuid";
 import TodoList from './components/TodoList';
 
@@ -14,6 +14,17 @@ const TodoApp: React.FC = () => {
   const [todos, setTodos] = useState<todoType[]>([]);
 
   const todoNameRef = useRef<HTMLInputElement>(null);
+
+  // useEffectハンドラを使用して、コンポーネントがマウントされたときにLocalStorageからtodoを読み込む
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem('todos') || '[]');
+    setTodos(storedTodos);
+  }, []);
+
+  // useEffectハンドラを使用して、todoが変更されるたびにLocalStorageにtodoを保存する
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   const handleAddTodo = (e: React.MouseEvent<HTMLButtonElement>) => {
     // タスクを追加する
