@@ -9,17 +9,37 @@ const PWGeneratorApp : React.FC = () => {
   const symbolicRef = useRef<HTMLInputElement>(null);
   const countRef = useRef<HTMLInputElement>(null);
 
-  // フロントエンドの設定でバックエンドにリクエストを送り、バックエンドからパスワードを持ってくる関数
-  const fetchPasswords = (count: number, includes_num: boolean, includes_upper: boolean, includes_symbol: boolean) => {
-    return Array(count).fill("test_pass");
+  const generatePasswords = (count: number, includes_num: boolean, includes_upper: boolean, includes_symbol: boolean) => {
+    // パスワード生成用の文字セットを定義する
+    let charset = "abcdefghijklmnopqrstuvwxyz";
+    if (includes_num) {
+      charset += "0123456789";
+    }
+    if (includes_upper) {
+      charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    }
+    if (includes_symbol) {
+      charset += "!@#$%^&*()_+-=[]{}|;':\"<>,./?";
+    }
+  
+    // count個のパスワードを生成する
+    const passwords: string[] = [];
+    for (let i = 0; i < count; i++) {
+      let password = "";
+      for (let j = 0; j < 8; j++) {
+        password += charset[Math.floor(Math.random() * charset.length)];
+      }
+      passwords.push(password);
+    }
+    return passwords;
   }
 
   const handleGeneratePasswords = (e: React.MouseEvent<HTMLButtonElement>) => {
     const includes_num = numericRef.current!.checked;
     const includes_upper = upperRef.current!.checked;
     const includes_symbol = symbolicRef.current!.checked;
-    const count = countRef.current!.value;
-    const newPasswords = fetchPasswords(2, includes_num, includes_upper, includes_symbol);
+    const count = Number(countRef.current!.value);
+    const newPasswords = generatePasswords(count, includes_num, includes_upper, includes_symbol);
     setPasswords(newPasswords);
   }
 
