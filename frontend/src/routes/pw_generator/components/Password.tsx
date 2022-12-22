@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import Button from '@mui/material/Button';
 
 type PasswordProps = {
   password: string,
@@ -19,7 +20,7 @@ const Password: React.FC<PasswordProps> = ({password}) => {
       <span ref={passwordRef}>
         { password }
       </span>
-      <button onClick={handleCopyPassword}>コピー</button>
+      <Button variant="contained" onClick={handleCopyPassword}>コピー</Button>
     </div>
   )
 }

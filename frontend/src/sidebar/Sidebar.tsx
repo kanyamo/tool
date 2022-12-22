@@ -1,9 +1,9 @@
-import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 const SideBar = () => {
   return (
-    <div>
+    <aside>
+      <h2>ツール一覧</h2>
       <ul>
         <li>
           <Link to="/">Home</Link>
@@ -15,10 +15,10 @@ const SideBar = () => {
           <Link to="links/">Links</Link>
         </li>
         <li>
-          <Link to="pw_generator">PWGenerator</Link>
+          <Link to="pw_generator/">PWGenerator</Link>
         </li>
       </ul>
-    </div>
+    </aside>
   )
 }
 

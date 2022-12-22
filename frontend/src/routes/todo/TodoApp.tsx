@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from "uuid";
 import TodoList from './components/TodoList';
+import { Button } from '@mui/material';
 
 type todoType = {
   id: string,
@@ -55,8 +56,8 @@ const TodoApp: React.FC = () => {
       <h2>Todo List</h2>
       <TodoList todos={todos} toggleTodo={toggleTodo}/>
       <input type="text" ref={todoNameRef}></input>
-      <button onClick={handleAddTodo}>タスクを追加</button>
-      <button onClick={handleDeleteCompletedTodo}>完了したタスクの削除</button>
+      <Button variant="contained" onClick={handleAddTodo}>タスクを追加</Button>
+      <Button variant="contained" onClick={handleDeleteCompletedTodo}>完了したタスクの削除</Button>
       <div>残りのタスク:{todos.filter((todo) => !todo.completed).length}</div>
     </div>
   )
