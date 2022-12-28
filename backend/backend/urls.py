@@ -18,6 +18,6 @@ from django.urls import path, include
 import os
 
 urlpatterns = [
-    path(f'{os.getenv("ADMIN_PATH", "admin")}/', admin.site.urls),
-    path('api/', include('core.urls')),
+    path(f'backend/{os.getenv("ADMIN_PATH", "admin")}/', admin.site.urls),
+    path('backend/api/', include('core.urls')),
 ]
