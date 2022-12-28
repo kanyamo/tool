@@ -19,7 +19,14 @@ const SideBar: React.FC = () => {
     async function getNotifications() {
       try {
         console.log(`${API_BASE_URL}api/notifications/`);
-        const response = await fetch(`${API_BASE_URL}api/notifications/`);
+        const response = await fetch(
+          `${API_BASE_URL}api/notifications/`,
+          {
+            headers: {
+              'Accept': 'application/json',
+            }
+          }
+        );
         const data = await response.json();
         console.log(data);
         setNotifications(data);
