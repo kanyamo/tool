@@ -10,7 +10,7 @@ type notificationType = {
   pub_date: string
 }
 
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const SideBar: React.FC = () => {
   const [notifications, setNotifications] = useState<notificationType[]>([]);
@@ -18,7 +18,8 @@ const SideBar: React.FC = () => {
   useEffect(() => {
     async function getNotifications() {
       try {
-        const response = await fetch('http://localhost:8000/api/notifications/');
+        console.log(`${API_BASE_URL}api/notifications/`);
+        const response = await fetch(`${API_BASE_URL}api/notifications/`);
         const data = await response.json();
         console.log(data);
         setNotifications(data);
