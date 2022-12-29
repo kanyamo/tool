@@ -19,12 +19,15 @@ const SideBar: React.FC = () => {
     async function getNotifications() {
       try {
         console.log(`${API_BASE_URL}api/notifications/`);
-        fetch(`${API_BASE_URL}api/notifications`)
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setNotifications(data);
-        });
+        fetch(`${API_BASE_URL}api/notifications/`)
+          .then((response) => {
+            console.log(response);
+            return response.json()
+          })
+          .then((data) => {
+            console.log(data);
+            setNotifications(data);
+          });
       } catch (error) {
         console.error(error);
       }
