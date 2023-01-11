@@ -1,0 +1,14 @@
+// todoアプリのcssをここに記述する
+
+.todo-app {
+  .todo-name-input-container {
+    margin: 1rem;
+  }
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    // button {
+    //   display: block;
+    // }
+  }
+}

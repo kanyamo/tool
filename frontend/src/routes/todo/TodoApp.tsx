@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from "uuid";
 import TodoList from './components/TodoList';
-import { Button } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import { todoType } from './models/todoType';
 
 const TodoApp: React.FC = () => {
@@ -47,14 +47,23 @@ const TodoApp: React.FC = () => {
   };
 
   return (
-    <div>
+    <section className="todo-app">
       <h1>Todo List</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo}/>
-      <input type="text" ref={todoNameRef}></input>
-      <Button variant="contained" onClick={handleAddTodo}>タスクを追加</Button>
-      <Button variant="contained" onClick={handleDeleteCompletedTodo}>完了したタスクの削除</Button>
       <div>残りのタスク:{todos.filter((todo) => !todo.completed).length}</div>
-    </div>
+      <div className="todo-name-input-container">
+        <TextField
+          label="新しいタスク名"
+          variant="outlined"
+          inputRef={todoNameRef}
+          fullWidth
+        />
+      </div>
+      <div className="action-buttons">
+        <Button variant="contained" onClick={handleAddTodo}>タスクを追加</Button>
+        <Button variant="contained" onClick={handleDeleteCompletedTodo}>完了したタスクの削除</Button>
+      </div>
+    </section>
   )
 }
 

@@ -140,4 +140,12 @@ h2.center span {
   padding: 0 1em;
   background: #fff;
 }
+
+.todo-app .todo-name-input-container {
+  margin: 1rem;
+}
+.todo-app .action-buttons {
+  display: flex;
+  justify-content: space-between;
+}
 /*# sourceMappingURL=styles.css.map */
