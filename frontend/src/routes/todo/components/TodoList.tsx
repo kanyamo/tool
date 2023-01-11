@@ -1,16 +1,8 @@
 import React from 'react';
 import Todo from './Todo';
+import { todoListProps } from '../models/todoType';
 
-type TodoListProps = {
-  todos: Array<{
-    id: string,
-    name: string,
-    completed: boolean
-  }>,
-  toggleTodo: (id: string) => void
-}
-
-const TodoList: React.FC<TodoListProps> = ({todos, toggleTodo}) => {
+const TodoList: React.FC<todoListProps> = ({todos, toggleTodo}) => {
   return (
     <ul>
       {todos.map((todo) =>

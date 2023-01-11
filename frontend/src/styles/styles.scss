@@ -1,4 +1,6 @@
-@import 'settings/variables.scss';
+@import "settings/variables";
+@import "settings/reset";
 
 // 各コンポーネントをインポート
-@import 'components/app';
+@import "components/app";
+@import "components/headings";

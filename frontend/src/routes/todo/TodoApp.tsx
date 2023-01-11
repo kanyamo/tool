@@ -3,12 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { v4 as uuidv4 } from "uuid";
 import TodoList from './components/TodoList';
 import { Button } from '@mui/material';
-
-type todoType = {
-  id: string,
-  name: string,
-  completed: boolean
-}
+import { todoType } from './models/todoType';
 
 const TodoApp: React.FC = () => {
 
@@ -53,7 +48,7 @@ const TodoApp: React.FC = () => {
 
   return (
     <div>
-      <h2>Todo List</h2>
+      <h1>Todo List</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo}/>
       <input type="text" ref={todoNameRef}></input>
       <Button variant="contained" onClick={handleAddTodo}>タスクを追加</Button>

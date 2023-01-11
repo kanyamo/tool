@@ -32,7 +32,7 @@ const LinksApp = () => {
 
   return (
     <div>
-      <h2>Links</h2>
+      <h1>Links</h1>
       <p>私が作った他のサイトへのリンク集です。</p>
       <LinkList links={links}></LinkList>
     </div>

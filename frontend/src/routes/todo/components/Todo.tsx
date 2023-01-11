@@ -1,10 +1,5 @@
 import React from 'react';
-
-type todoType = {
-    id: string,
-    name: string,
-    completed: boolean
-}
+import todoType from '../models/todoType';
 
 type TodoProps = {
   todo: todoType,

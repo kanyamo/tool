@@ -1,3 +1,117 @@
-.wrapper {
-    margin: 0 $side-margin;
+// アプリ全体に関するスタイルの設定はこのファイルに定義する
+html {
+  scroll-behavior: smooth;
+  body {
+    margin: 0;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    .App {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      .app-bar {
+        flex: none;
+        background-color: $first-color;
+        color: white;
+        padding: 1rem;
+      }
+      .wrapper {
+        margin: 0 $side-margin;
+        flex-grow: 1;
+        .container {
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+
+          .column2 aside {
+            .tools-list {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              li {
+                display: block;
+                margin: 0.5rem;
+                border: 2px solid $first-color;
+                background-color: $first-color-bgc;
+                a {
+                  .tools-list-item__inner {
+                    width: 150px;
+                    aspect-ratio: 1;
+                    position: relative;
+                    .centered {
+                      position: absolute;
+                      top: 50%;
+                      left: 50%;
+                      transform: translate(-50%, -50%);
+                      .tool-title {
+                        font-size: large;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .bottom-bar {
+        background-color: $first-color;
+        color: white;
+        text-align: right;
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+// 以下はPC表示時の設定
+@media screen and (800px <= width < 1199px) {
+  // 800ピクセル以上、1200ピクセル以内はcolumn1を広げる
+  body {
+    background-color: #eee;
+    .container {
+      display: flex;
+
+      .column1 {
+        flex: 1;
+        border-radius: 6px;
+        background-color: white;
+        padding: 1rem;
+      }
+
+      .column2 {
+        flex: none;
+        width: 400px;
+        margin-left: 1rem;
+        border-radius: 6px;
+        background-color: white;
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+@media screen and (1200px <= width) {
+  // 1200ピクセル以上はcolumn2を広げる
+  body {
+    background-color: #eee;
+    .container {
+      display: flex;
+
+      .column1 {
+        flex: none;
+        width: 800px;
+        border-radius: 6px;
+        background-color: white;
+        padding: 1rem;
+      }
+
+      .column2 {
+        flex: 1;
+        min-width: 400px;
+        margin-left: 1rem;
+        border-radius: 6px;
+        background-color: white;
+        padding: 1rem;
+      }
+    }
+  }
 }

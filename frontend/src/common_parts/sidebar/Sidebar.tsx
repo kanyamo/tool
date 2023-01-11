@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
 import NotificationList from './NotificationList';
 import { useState, useEffect } from 'react';
 import React from 'react';
+import ToolsListItem from './ToolsListItem';
+import H2Center from '../headers/H2Center';
 
 type notificationType = {
   id: string,
@@ -18,14 +19,11 @@ const SideBar: React.FC = () => {
   useEffect(() => {
     async function getNotifications() {
       try {
-        console.log(`${API_BASE_URL}api/notifications/`);
         fetch(`${API_BASE_URL}api/notifications/`)
           .then((response) => {
-            console.log(response);
             return response.json()
           })
           .then((data) => {
-            console.log(data);
             setNotifications(data);
           });
       } catch (error) {
@@ -38,26 +36,16 @@ const SideBar: React.FC = () => {
   return (
     <aside>
       <section>
-        <h2>Tools List</h2>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="todo/">Todo</Link>
-          </li>
-          <li>
-            <Link to="links/">Links</Link>
-          </li>
-          <li>
-            <Link to="pw_generator/">PWGenerator</Link>
-          </li>
+        <H2Center>Tools List</H2Center>
+        <ul className='tools-list'>
+          <ToolsListItem to="/" title='Home'></ToolsListItem>
+          <ToolsListItem to="/links" title='Links'></ToolsListItem>
+          <ToolsListItem to="/todo" title='Todo'></ToolsListItem>
+          <ToolsListItem to="/pw_generator" title='Password Generator'></ToolsListItem>
         </ul>
       </section>
       <section>
-        <h2>
-          What's New?
-        </h2>
+        <H2Center>What's New?</H2Center>
         <NotificationList notifications={notifications}></NotificationList>
       </section>
     </aside>

@@ -43,7 +43,7 @@ const PWGeneratorApp : React.FC = () => {
 
   return (
     <div>
-      <h2>Password Generator</h2>
+      <h1>Password Generator</h1>
       <p>ランダムなパスワードを生成します。</p>
       <label htmlFor="id_count">
         生成個数：

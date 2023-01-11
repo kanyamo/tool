@@ -5,16 +5,22 @@ import LinksApp from './routes/links/LinksApp';
 import Home from './routes/home/Home';
 import NoMatch from './routes/no_match/NoMatch';
 import PWGeneratorApp from './routes/pw_generator/PWGeneratorApp';
-import Sidebar from './sidebar/Sidebar';
-import { Routes, Route } from 'react-router-dom';
+import Sidebar from './common_parts/sidebar/Sidebar';
+import { Routes, Route, Link } from 'react-router-dom';
 
 function App(): React.ReactElement {
   return (
-    <div className="App">
+    <div className="App" id="top">
+      <div className="app-bar">
+        <header>
+          <Link to="/">
+            <span className="">One-Stop Tools</span>
+          </Link>
+        </header>
+      </div>
       <div className="wrapper">
         <div className="container">
           <div className="column1">
-            <h1>One-Stop Tools</h1>
             <Routes>
               <Route path="/" element={<Home></Home>}></Route>
               <Route path="todo/" element={<TodoApp></TodoApp>}></Route>
@@ -27,6 +33,11 @@ function App(): React.ReactElement {
             <Sidebar></Sidebar>
           </div>
         </div>
+      </div>
+      <div className="bottom-bar">
+        <footer>
+          <a href="#top">トップに戻る</a>
+        </footer>
       </div>
     </div>
   );

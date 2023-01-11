@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-const Home = () => {
+const Home : React.FC = () => {
   return (
     <div>
-      <h2>Home</h2>
+      <h1>Home</h1>
       <p>このページはさまざまなツールをweb上で使えるようにしたページです。</p>
     </div>
   )
