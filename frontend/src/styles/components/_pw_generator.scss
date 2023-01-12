@@ -1,0 +1,57 @@
+.pw-generator-app {
+  .control-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .count-input {
+      padding: 0.3rem;
+    }
+
+    &.password-length {
+      flex-direction: column;
+      align-items: flex-start;
+      .password-length-title {
+        padding: 0.5rem 0;
+      }
+      .slider-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .generate-button-container {
+    text-align: center;
+  }
+
+  ul {
+    margin-bottom: 1rem;
+    .password-list-item-container {
+      padding: 1rem 0;
+      border-bottom: 1px solid black;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      // パスワードが長いときに改行を許す設定
+      span {
+        word-break: break-all;
+        margin-right: 1rem;
+      }
+      button {
+        flex-shrink: 0;
+      }
+    }
+  }
+}
+
+@media screen and (1200px <= width) {
+  .pw-generator-app .control-group-item.password-length {
+    flex-direction: row;
+    align-items: center;
+    .slider-container {
+      max-width: 50%;
+    }
+  }
+}

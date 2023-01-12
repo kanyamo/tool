@@ -1,14 +1,18 @@
 // todoアプリのcssをここに記述する
 
 .todo-app {
+  ul {
+    margin-bottom: 1rem;
+    .todo-item-container {
+      padding: 1rem 0;
+      border-bottom: 1px solid black;
+    }
+  }
   .todo-name-input-container {
-    margin: 1rem;
+    margin: 1rem 0;
   }
   .action-buttons {
     display: flex;
     justify-content: space-between;
-    // button {
-    //   display: block;
-    // }
   }
 }

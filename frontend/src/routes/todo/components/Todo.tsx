@@ -13,17 +13,18 @@ const Todo : React.FC<TodoProps> = ({ todo, toggleTodo }) => {
 
 
   return (
-    <div>
-      <label htmlFor="">
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          readOnly
-          onChange={handleTodoClick}
-        />
+    <div className="todo-item-container">
+      <input
+        type="checkbox"
+        checked={todo.completed}
+        readOnly
+        id={`checkbox_${todo.id}`}
+        onChange={handleTodoClick}
+      />
+      <label htmlFor={`checkbox_${todo.id}`}>
+        {todo.name}
       </label>
-    {todo.name}
-  </div>
+    </div>
   );
 };
 

@@ -63,7 +63,7 @@ html {
 }
 
 // 以下はPC表示時の設定
-@media screen and (800px <= width < 1199px) {
+@media screen and (800px <= width < 1200px) {
   // 800ピクセル以上、1200ピクセル以内はcolumn1を広げる
   body {
     background-color: #eee;
@@ -90,23 +90,24 @@ html {
 }
 
 @media screen and (1200px <= width) {
-  // 1200ピクセル以上はcolumn2を広げる
   body {
     background-color: #eee;
     .container {
       display: flex;
 
       .column1 {
-        flex: none;
-        width: 800px;
+        flex-grow: 0;
+        flex-shrink: 1;
+        flex-basis: 1200px;
         border-radius: 6px;
         background-color: white;
         padding: 1rem;
       }
 
       .column2 {
-        flex: 1;
-        min-width: 400px;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 400px;
         margin-left: 1rem;
         border-radius: 6px;
         background-color: white;

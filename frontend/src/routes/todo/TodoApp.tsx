@@ -47,7 +47,7 @@ const TodoApp: React.FC = () => {
   };
 
   return (
-    <section className="todo-app">
+    <div className="todo-app">
       <h1>Todo List</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo}/>
       <div>残りのタスク:{todos.filter((todo) => !todo.completed).length}</div>
@@ -63,7 +63,16 @@ const TodoApp: React.FC = () => {
         <Button variant="contained" onClick={handleAddTodo}>タスクを追加</Button>
         <Button variant="contained" onClick={handleDeleteCompletedTodo}>完了したタスクの削除</Button>
       </div>
-    </section>
+      <h2>
+        使い方
+      </h2>
+      <p>
+        シンプルなやることリストアプリです。タスク名を入力して「タスクを追加」ボタンを押すとタスクが追加されます。
+      </p>
+      <p>
+        Todoリストでタスクをタップすると完了・未完了を切り替えることができます。「完了したタスクを削除」ボタンを押すと、完了したタスクをすべて削除できます。
+      </p>
+    </div>
   )
 }
 
