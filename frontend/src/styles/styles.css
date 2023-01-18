@@ -24,7 +24,7 @@ html body {
 html body .App {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 html body .App .app-bar {
   flex: none;
@@ -207,5 +207,29 @@ h2.center span {
   .pw-generator-app .control-group-item.password-length .slider-container {
     max-width: 50%;
   }
+}
+.links-app .link-list .link-container {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  padding: 0 1rem;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 15px 15px 30px #cfcfcf, -15px -15px 30px #ffffff;
+}
+.links-app .link-list .link-container h3 {
+  padding: 1em 0;
+  margin: 0;
+}
+.links-app .link-list .link-container h3:hover {
+  text-decoration: underline;
+}
+.links-app .link-list .link-container p {
+  padding-bottom: 1rem;
+  margin: 0;
+}
+.links-app .add-link-form .field-container {
+  margin: 1rem 0;
+}
+.links-app .add-link-form .add-button-container {
+  text-align: center;
 }
 /*# sourceMappingURL=styles.css.map */

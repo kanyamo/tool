@@ -1,0 +1,35 @@
+.links-app {
+  .link-list {
+    .link-container {
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      padding: 0 1rem;
+      background: linear-gradient(145deg, #ffffff, #e6e6e6);
+      box-shadow: 15px 15px 30px #cfcfcf, -15px -15px 30px #ffffff;
+
+      h3 {
+        padding: 1em 0;
+        margin: 0;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      p {
+        padding-bottom: 1rem;
+        margin: 0;
+      }
+    }
+  }
+
+  .add-link-form {
+    .field-container {
+      margin: 1rem 0;
+    }
+
+    .add-button-container {
+      text-align: center;
+    }
+  }
+}

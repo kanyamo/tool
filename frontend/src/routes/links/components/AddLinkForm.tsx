@@ -37,7 +37,7 @@ const AddLinkForm : React.FC<addLinkFormProps> = ({ addLink }) => {
             閉じる
           </Button>
         </div>
-        <form>
+        <form className="add-link-form">
           <div className="field-container link-name-container">
             <TextField
               label="リンクの名前"

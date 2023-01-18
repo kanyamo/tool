@@ -51,7 +51,7 @@ const LinksApp : React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="links-app">
       <h1>Links</h1>
       <LinkList links={links}></LinkList>
       <AddLinkForm addLink={addLink}></AddLinkForm>

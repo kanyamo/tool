@@ -3,15 +3,15 @@ import { linkProps } from '../models/linkType'
 
 const LinkItem: React.FC<linkProps> = ({ link }) => {
   return (
-    <div>
+    <div className="link-container">
       <a href={ link.url }>
         <h3>
           { link.name }
         </h3>
-        <p>
-          { link.description }
-        </p>
       </a>
+      <p>
+        { link.description }
+      </p>
     </div>
   )
 }

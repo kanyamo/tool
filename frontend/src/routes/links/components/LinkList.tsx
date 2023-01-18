@@ -5,7 +5,7 @@ import { ToolsLink, linksProps } from '../models/linkType';
 const LinkList : React.FC<linksProps>= ({ links }) => {
   return (
     <div>
-      <ul>
+      <ul className="link-list">
         {
           links.map((link: ToolsLink) => 
             <li key={link.id}>
