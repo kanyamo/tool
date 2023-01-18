@@ -1,15 +1,5 @@
 import React from 'react'
-
-type linkType = {
-  id: string,
-  url: string,
-  name: string,
-  description: string
-}
-
-type linkProps = {
-  link: linkType
-}
+import { linkProps } from '../models/linkType'
 
 const LinkItem: React.FC<linkProps> = ({ link }) => {
   return (
