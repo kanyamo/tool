@@ -5,6 +5,7 @@ import LinksApp from './routes/links/LinksApp';
 import Home from './routes/home/Home';
 import NoMatch from './routes/no_match/NoMatch';
 import PWGeneratorApp from './routes/pw_generator/PWGeneratorApp';
+import GTAnalyzerApp from './routes/gt_analyzer/GTAnalyzerApp';
 import Sidebar from './common_parts/sidebar/Sidebar';
 import { Routes, Route, Link } from 'react-router-dom';
 
@@ -26,6 +27,7 @@ function App(): React.ReactElement {
               <Route path="todo/" element={<TodoApp></TodoApp>}></Route>
               <Route path="links/" element={<LinksApp></LinksApp>}></Route>
               <Route path="pw_generator" element={<PWGeneratorApp></PWGeneratorApp>}></Route>
+              <Route path="gt_analyzer" element={<GTAnalyzerApp></GTAnalyzerApp>}></Route>
               <Route path="*" element={<NoMatch></NoMatch>}></Route>
             </Routes>
           </div>

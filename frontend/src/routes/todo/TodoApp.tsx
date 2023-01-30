@@ -57,7 +57,7 @@ const TodoApp: React.FC = () => {
           variant="outlined"
           inputRef={todoNameRef}
           fullWidth
-          placeholder="本を読む"
+          placeholder="今日は何をする予定ですか？"
         />
       </div>
       <div className="action-buttons">

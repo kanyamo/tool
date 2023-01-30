@@ -42,6 +42,7 @@ const SideBar: React.FC = () => {
           <ToolsListItem to="/links" title='Links'></ToolsListItem>
           <ToolsListItem to="/todo" title='Todo'></ToolsListItem>
           <ToolsListItem to="/pw_generator" title='Password Generator'></ToolsListItem>
+          <ToolsListItem to="/gt_analyzer" title='Garbled Text Analyzer'></ToolsListItem>
         </ul>
       </section>
       <section>
