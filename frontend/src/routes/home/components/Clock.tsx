@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect } from "react";
+import ClockNumber from './ClockNumber';
 
 const Clock: React.FC = () => {
 
@@ -27,6 +28,12 @@ const Clock: React.FC = () => {
 
   return (
     <div className='clock'>
+      {
+        Array.from({length: 12}, (_, index) => index + 1)
+        .map((number) =>
+          <ClockNumber number={number} key={number}></ClockNumber>
+        )
+      }
       <div className="h-hand"></div>
       <div className="m-hand"></div>
       <div className="s-hand"></div>

@@ -46,4 +46,19 @@
     transform: translate(-50%, -50%);
     background-color: $first-color;
   }
+  .number-hand {
+    height: 48%;
+    width: 60px;
+    position: absolute;
+    font-size: 40px;
+    color: black;
+    transform-origin: bottom;
+    bottom: calc(50%);
+    left: calc(50% - 30px);
+    rotate: var(--deg);
+    .number {
+      text-align: center;
+      rotate: calc(-1 * var(--deg));
+    }
+  }
 }
