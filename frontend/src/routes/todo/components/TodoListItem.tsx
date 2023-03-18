@@ -1,15 +1,12 @@
 import React from 'react';
-import todoType from '../models/todoType';
+import todoType from '../models/todo';
 
 type TodoProps = {
   todo: todoType,
-  toggleTodo: (id: string) => void
+  toggleTodo: (id: string) => void,
 }
 
-const Todo : React.FC<TodoProps> = ({ todo, toggleTodo }) => {
-  const handleTodoClick = () => {
-    toggleTodo(todo.id)
-  }
+const TodoListItem : React.FC<TodoProps> = ({ todo, toggleTodo}) => {
 
 
   return (
@@ -19,7 +16,7 @@ const Todo : React.FC<TodoProps> = ({ todo, toggleTodo }) => {
         checked={todo.completed}
         readOnly
         id={`checkbox_${todo.id}`}
-        onChange={handleTodoClick}
+        onChange={() => {toggleTodo(todo.id)}}
       />
       <label htmlFor={`checkbox_${todo.id}`}>
         {todo.name}
@@ -28,4 +25,4 @@ const Todo : React.FC<TodoProps> = ({ todo, toggleTodo }) => {
   );
 };
 
-export default Todo;
+export default TodoListItem;
