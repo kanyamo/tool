@@ -1,19 +1,20 @@
 import React from 'react'
 import { useState, useRef, useEffect } from 'react';
-import { v4 as uuidv4 } from "uuid";
 import TodoList from './components/TodoList';
 import { Button, TextField } from '@mui/material';
-import { todoType } from './models/todoType';
+import Todo from './models/todo';
 
 const TodoApp: React.FC = () => {
 
-  const [todos, setTodos] = useState<todoType[]>([]);
+  const [todos, setTodos] = useState<Array<Todo>>([]);
 
   const todoNameRef = useRef<HTMLInputElement>(null);
 
   // useEffectハンドラを使用して、コンポーネントがマウントされたときにLocalStorageからtodoを読み込む
   useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem('todos') || '[]');
+    const storedTodos = JSON.parse(
+      localStorage.getItem('todos') || '[]'
+    ).map((todoObj: any) => new Todo(todoObj));
     setTodos(storedTodos);
   }, []);
 
@@ -27,7 +28,7 @@ const TodoApp: React.FC = () => {
     const name = todoNameRef.current!.value;
     if (name === "") return;
     setTodos((prevTodos) => {
-      return [...prevTodos, {id: uuidv4(), name: name, completed: false}];
+      return [...prevTodos, new Todo({name: name})];
     });
     todoNameRef.current!.value = "";
   };
@@ -36,7 +37,7 @@ const TodoApp: React.FC = () => {
     const newTodos = [...todos];
     const todo = newTodos.find((todo) => todo.id === id);
     if (todo !== undefined) {
-      todo.completed = !todo.completed;
+      todo.toggleTodo();
     }
     setTodos(newTodos);
   };
