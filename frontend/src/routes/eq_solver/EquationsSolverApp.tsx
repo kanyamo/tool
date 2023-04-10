@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Grid } from '@mui/material';
+import { TextField, Button, Grid, Container } from '@mui/material';
 import { Matrix } from './models/matrix';
 import TransformList from './components/TransformList';
 import { performSingleTransformation } from './utils/perform_single_transformation';
@@ -12,6 +12,16 @@ import { InlineMath } from 'react-katex';
 const EquationsSolverApp: React.FC = () => {
 
   const [dimension, setDimension] = useState(2);
+
+  const handleDecrementDimension = () => {
+    if (dimension > 1) {
+      setDimension(dimension - 1);
+    }
+  };
+
+  const handleIncrementDimension = () => {
+    setDimension(dimension + 1);
+  };
 
   const initialValues = Array(dimension).fill(0).map(() => Array(dimension + 1).fill(''));
   useEffect(() => {
@@ -63,12 +73,17 @@ const EquationsSolverApp: React.FC = () => {
       <h1>
         連立方程式ソルバー
       </h1>
-      <TextField
-        label="次元"
-        value={dimension}
-        onChange={(e) => setDimension(parseInt(e.target.value))}
-        type="number"
-      />
+      <Container sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+        <Button variant="outlined" color="primary" onClick={handleDecrementDimension}>
+          -
+        </Button>
+        <span>
+          元の個数: {dimension}
+        </span>
+        <Button variant="outlined" color="primary" onClick={handleIncrementDimension}>
+          +
+        </Button>
+      </Container>
       <p>
         拡大係数行列の係数を入力してください。
       </p>
