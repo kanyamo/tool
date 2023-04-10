@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Button, Grid } from '@mui/material';
-import { Fraction } from './models/fraction';
-import { InlineMath } from 'react-katex';
+import { Matrix } from './models/matrix';
+import TransformList from './components/TransformList';
+import { performSingleTransformation } from './utils/perform_single_transformation';
+import { EquationResult } from './models/equationResult';
+import Result from './components/Result';
+import RenderMatrix from './components/RenderMatrix';
 import 'katex/dist/katex.min.css';
-
-interface EquationResult {
-    text: string;
-    isMath: boolean;
-}
+import { InlineMath } from 'react-katex';
 
 const EquationsSolverApp: React.FC = () => {
-  const initialValues = [
-    ['', ''],
-    ['', ''],
-    ['', '']
-  ];
+
+  const [dimension, setDimension] = useState(2);
+
+  const initialValues = Array(dimension).fill(0).map(() => Array(dimension + 1).fill(''));
+  useEffect(() => {
+    resetValues();
+    console.log(`Dimension changed to ${dimension}x${dimension + 1}.`);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dimension]);
 
   const [values, setValues] = useState(initialValues);
-  const [result, setResult] = useState<EquationResult>({text: '', isMath: false});
+  const [transforms, setTransforms] = useState<Matrix[]>([]);
+  const [result, setResult] = useState<EquationResult>({solution: [], hasSolution: false, solved: false});
 
   const handleChange = (row: number, col: number, value: string) => {
     const updatedValues = [...values];
@@ -25,22 +30,31 @@ const EquationsSolverApp: React.FC = () => {
     setValues(updatedValues);
   };
 
+  const resetValues = () => {
+    setValues(initialValues);
+    setResult({solution: [], hasSolution: false, solved: false});
+    setTransforms([]);
+  };
+
   const solveEquations = () => {
-    const a = new Fraction(values[0][0] ? parseFloat(values[0][0]) : 0, 1);
-    const b = new Fraction(values[0][1] ? parseFloat(values[0][1]) : 0, 1);
-    const c = new Fraction(values[1][0] ? parseFloat(values[1][0]) : 0, 1);
-    const d = new Fraction(values[1][1] ? parseFloat(values[1][1]) : 0, 1);
-    const e = new Fraction(values[2][0] ? parseFloat(values[2][0]) : 0, 1);
-    const f = new Fraction(values[2][1] ? parseFloat(values[2][1]) : 0, 1);
-
-    const det = a.multiply(e).subtract(b.multiply(d));
-
-    if (det.numerator === 0) {
-      setResult({text: '解が存在しないか、一意でない場合があります。', isMath: false});
-    } else {
-      const x = (c.multiply(e).subtract(b.multiply(f))).divide(det);
-      const y = (a.multiply(f).subtract(c.multiply(d))).divide(det);
-      setResult({text: `x = ${x.toMath()},\\; y = ${y.toMath()}`, isMath: true});
+    setTransforms([]);
+    let matrix = Matrix.fromStrings(values);
+    const numRows = matrix.numRows;
+    try {
+      for (let step = 0; step < numRows; step++) {  
+        const [ transformedMatrix, transformationType ] = performSingleTransformation(matrix, step);
+        matrix = transformedMatrix;
+        console.log(`Step ${step + 1}, transformation: ${transformationType}`);
+        console.log(transformedMatrix);
+        setTransforms((prevTransforms) => [...prevTransforms, transformedMatrix]);
+      }
+      const solution = matrix.backSubstitution();
+      console.log("Solution:", solution);
+      setResult({hasSolution: true, solution, solved: true});
+    } catch (e) {
+      console.log(e);
+      setResult({hasSolution: false, solution: [], solved: true});
+      return;
     }
   };
 
@@ -49,40 +63,54 @@ const EquationsSolverApp: React.FC = () => {
       <h1>
         連立方程式ソルバー
       </h1>
+      <TextField
+        label="次元"
+        value={dimension}
+        onChange={(e) => setDimension(parseInt(e.target.value))}
+        type="number"
+      />
+      <p>
+        拡大係数行列の係数を入力してください。
+      </p>
       <Grid container spacing={2}>
         {values.map((row, rowIndex) => (
           row.map((colValue, colIndex) => (
-            <Grid item key={`row${rowIndex}-col${colIndex}`} xs={4}>
+            <Grid item key={`row${rowIndex}-col${colIndex}`} xs={12 / (dimension + 1)}>
               <TextField
                 label={`値 (${rowIndex + 1}, ${colIndex + 1})`}
                 value={colValue}
                 onChange={(e) => handleChange(rowIndex, colIndex, e.target.value)}
                 type="number"
                 fullWidth
-              />
+                />
             </Grid>
           ))
         ))}
-        <Grid item xs={12}>
-          <Button variant="contained" color="primary" onClick={solveEquations}>
-            ソルバーを実行
-          </Button>
-        </Grid>
-        <Grid item xs={12}>
-          {result && result.isMath ? <InlineMath math={result.text} /> : result.text}
-        </Grid>
       </Grid>
+      <section>
+        <h3>
+          プレビュー
+        </h3>
+        <RenderMatrix matrix={Matrix.fromStrings(values)} />
+      </section>
+        <Button variant="contained" color="primary" onClick={solveEquations}>
+          この方程式を解く
+        </Button>
+        <Button variant="contained" color="primary" onClick={resetValues}>
+          係数をリセット
+        </Button>
+      <section>
+        <Result result={result} />
+        <TransformList transforms={transforms} />
+      </section>
       <h2>
         使い方
       </h2>
       <p>
-        整数の連立方程式を簡単に特くツールです。連立方程式の係数を入力して「ソルバーを実行」ボタンを押すと、解が分数で表示されます。
+        整数係数の<InlineMath math="n"></InlineMath>元連立方程式を簡単に解くツールです。連立方程式の係数を入力して「この方程式を解く」ボタンを押すと、解と途中式が分数で表示されます。
       </p>
       <p>
         何も入力しない場合は、0として扱われます。
-      </p>
-      <p>
-        現在整数の入力にのみ対応しています。また、2次元の連立方程式のみ対応しています。
       </p>
     </div>
   );

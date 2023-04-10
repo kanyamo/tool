@@ -57,6 +57,10 @@ export class Fraction {
     return new Fraction(numerator, denominator);
   }
 
+  abs(): Fraction {
+    return new Fraction(Math.abs(this.numerator), this.denominator);
+  }
+
   toString(): string {
     if (this.denominator === 1) {
       return `${this.numerator}`;
@@ -64,12 +68,16 @@ export class Fraction {
     return `${this.numerator}/${this.denominator}`;
   }
 
-  toMath(): string {
+  toLatex(): string {
     if (this.denominator === 1) {
       return `${this.numerator}`;
     } else if (this.numerator < 0) {
       return `-\\dfrac{${-this.numerator}}{${this.denominator}}`;
     }
     return `\\dfrac{${this.numerator}}{${this.denominator}}`;
+  }
+
+  toNumber(): number {
+    return this.numerator / this.denominator;
   }
 }
