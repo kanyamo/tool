@@ -61,6 +61,12 @@ export class Fraction {
     return new Fraction(Math.abs(this.numerator), this.denominator);
   }
 
+  power(exponent: number): Fraction {
+    const numerator = Math.pow(this.numerator, exponent);
+    const denominator = Math.pow(this.denominator, exponent);
+    return new Fraction(numerator, denominator);
+  }
+
   toString(): string {
     if (this.denominator === 1) {
       return `${this.numerator}`;
@@ -79,5 +85,11 @@ export class Fraction {
 
   toNumber(): number {
     return this.numerator / this.denominator;
+  }
+
+  equals(fraction: Fraction): boolean {
+    return (
+      this.numerator === fraction.numerator && this.denominator === fraction.denominator
+    );
   }
 }

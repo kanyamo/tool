@@ -39,4 +39,8 @@ export class Term {
   isZero(): boolean {
     return this.coefficient.toNumber() === 0;
   }
+
+  substitute(value: Fraction): Fraction {
+    return this.coefficient.multiply(value.power(this.exponent));
+  }
 }

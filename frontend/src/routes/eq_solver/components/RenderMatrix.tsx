@@ -29,7 +29,15 @@ const RenderMatrix: React.FC<RenderMatrixProps> = ({matrix}) => {
 
   const equations = matrix.data.map(formatEquation).join('');
 
-  const latexCode = `
+  
+
+  const latexCode = matrix.numRows === 1 ? `
+    \\begin{align*}
+      \\begin{aligned}
+        ${equations}
+      \\end{aligned}
+    \\end{align*}
+  `:`
     \\begin{align*}
       \\left\\{
         \\begin{aligned}
