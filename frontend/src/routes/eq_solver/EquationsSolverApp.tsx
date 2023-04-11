@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Grid, Container } from '@mui/material';
-import { Matrix } from './models/matrix';
+import { Matrix, TransformationType } from './models/matrix';
 import TransformList from './components/TransformList';
 import { performSingleTransformation } from './utils/perform_single_transformation';
 import { EquationResult } from './models/equationResult';
+import CheckSolutions from './components/CheckSolutions';
 import Result from './components/Result';
 import RenderMatrix from './components/RenderMatrix';
 import 'katex/dist/katex.min.css';
@@ -51,12 +52,16 @@ const EquationsSolverApp: React.FC = () => {
     let matrix = Matrix.fromStrings(values);
     const numRows = matrix.numRows;
     try {
-      for (let step = 0; step < numRows; step++) {  
+      let step = 0;
+      while (step < numRows) {  
         const [ transformedMatrix, transformationType ] = performSingleTransformation(matrix, step);
         matrix = transformedMatrix;
         console.log(`Step ${step + 1}, transformation: ${transformationType}`);
         console.log(transformedMatrix);
         setTransforms((prevTransforms) => [...prevTransforms, transformedMatrix]);
+        if (transformationType !== TransformationType.SWAP) {
+          step++;
+        }
       }
       const solution = matrix.backSubstitution();
       console.log("Solution:", solution);
@@ -85,7 +90,7 @@ const EquationsSolverApp: React.FC = () => {
         </Button>
       </Container>
       <p>
-        拡大係数行列の係数を入力してください。
+        解きたい方程式の拡大係数行列を入力してください。
       </p>
       <Grid container spacing={2}>
         {values.map((row, rowIndex) => (
@@ -108,15 +113,20 @@ const EquationsSolverApp: React.FC = () => {
         </h3>
         <RenderMatrix matrix={Matrix.fromStrings(values)} />
       </section>
-        <Button variant="contained" color="primary" onClick={solveEquations}>
-          この方程式を解く
-        </Button>
-        <Button variant="contained" color="primary" onClick={resetValues}>
-          係数をリセット
-        </Button>
+        <Container sx={{padding: 0, display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+          <Button variant="contained" color="primary" onClick={solveEquations}>
+            この方程式を解く
+          </Button>
+          <Button variant="contained" color="primary" onClick={resetValues}>
+            係数をリセット
+          </Button>
+        </Container>
       <section>
         <Result result={result} />
         <TransformList transforms={transforms} />
+        {result.solved && result.hasSolution && 
+          <CheckSolutions matrix={Matrix.fromStrings(values)} solutions={result.solution} />
+        }
       </section>
       <h2>
         使い方
