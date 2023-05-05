@@ -9,6 +9,7 @@ import GTAnalyzerApp from './routes/gt_analyzer/GTAnalyzerApp';
 import Sidebar from './common_parts/sidebar/Sidebar';
 import { Routes, Route, Link } from 'react-router-dom';
 import EquationsSolverApp from './routes/eq_solver/EquationsSolverApp';
+import PianoApp from './routes/piano/PianoApp';
 
 function App(): React.ReactElement {
   return (
@@ -29,7 +30,8 @@ function App(): React.ReactElement {
               <Route path="links/" element={<LinksApp></LinksApp>}></Route>
               <Route path="pw_generator/" element={<PWGeneratorApp></PWGeneratorApp>}></Route>
               <Route path="gt_analyzer/" element={<GTAnalyzerApp></GTAnalyzerApp>}></Route>
-              <Route path="eq_solver" element={<EquationsSolverApp></EquationsSolverApp>}></Route>
+              <Route path="eq_solver/" element={<EquationsSolverApp></EquationsSolverApp>}></Route>
+              <Route path="piano/" element={<PianoApp></PianoApp>}></Route>
               <Route path="*" element={<NoMatch></NoMatch>}></Route>
             </Routes>
           </div>

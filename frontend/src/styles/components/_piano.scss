@@ -1,0 +1,74 @@
+.piano-app {
+  .keyboard {
+    display: flex;
+    border: 1px solid black;
+    .octave {
+      display: flex;
+      width: 100%;
+      aspect-ratio: 1.6;
+      max-height: 80vh;
+      position: relative;
+      .white-keys {
+        display: flex;
+        width: 100%;
+        .white-key {
+          flex-grow: 1;
+          height: 100%;
+          background-color: white;
+          border: 1px solid black;
+          box-sizing: border-box;
+          &:active {
+            background-color: #ddd;
+          }
+        }
+      }
+
+      .black-keys {
+        display: flex;
+        width: 100%;
+        height: calc(100% / 3 * 2);
+        position: absolute;
+        top: 0;
+        left: 0;
+        .black-keys-half {
+          display: flex;
+          justify-content: space-evenly;
+          &.first-half {
+            width: calc(100% / 7 * 3);
+
+            .black-key {
+              width: calc(100% / 3 * 28 / 45);
+            }
+          }
+          &.second-half {
+            width: calc(100% / 7 * 4);
+
+            .black-key {
+              width: calc(100% / 4 * 28 / 45);
+            }
+          }
+
+          .black-key {
+            background-color: black;
+            color: white;
+            &:active {
+              background-color: #555;
+            }
+          }
+        }
+      }
+
+      .key {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+
+        .note {
+          font-size: 0.5rem;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+}
