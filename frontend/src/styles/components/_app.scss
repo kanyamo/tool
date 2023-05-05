@@ -63,8 +63,8 @@ html {
 }
 
 // 以下はPC表示時の設定
-@media screen and (800px <= width < 1200px) {
-  // 800ピクセル以上、1200ピクセル以内はcolumn1を広げる
+@media screen and (1000px <= width < 1200px) {
+  // 1000ピクセル以上、1200ピクセル以内はcolumn1を広げる
   body {
     background-color: #eee;
     .container {

@@ -72,7 +72,7 @@ html body .App .bottom-bar {
   padding: 1rem;
 }
 
-@media screen and (800px <= width < 1200px) {
+@media screen and (1000px <= width < 1200px) {
   body {
     background-color: #eee;
   }
@@ -296,5 +296,72 @@ h2.center span {
 .clock .number-hand .number {
   text-align: center;
   rotate: calc(-1 * var(--deg));
+}
+
+.piano-app .keyboard {
+  display: flex;
+  border: 1px solid black;
+}
+.piano-app .keyboard .octave {
+  display: flex;
+  width: 100%;
+  aspect-ratio: 1.6;
+  max-height: 80vh;
+  position: relative;
+}
+.piano-app .keyboard .octave .white-keys {
+  display: flex;
+  width: 100%;
+}
+.piano-app .keyboard .octave .white-keys .white-key {
+  flex-grow: 1;
+  height: 100%;
+  background-color: white;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+.piano-app .keyboard .octave .white-keys .white-key:active {
+  background-color: #ddd;
+}
+.piano-app .keyboard .octave .black-keys {
+  display: flex;
+  width: 100%;
+  height: 66.6666666667%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.piano-app .keyboard .octave .black-keys .black-keys-half {
+  display: flex;
+  justify-content: space-evenly;
+}
+.piano-app .keyboard .octave .black-keys .black-keys-half.first-half {
+  width: 42.8571428571%;
+}
+.piano-app .keyboard .octave .black-keys .black-keys-half.first-half .black-key {
+  width: 20.7407407407%;
+}
+.piano-app .keyboard .octave .black-keys .black-keys-half.second-half {
+  width: 57.1428571429%;
+}
+.piano-app .keyboard .octave .black-keys .black-keys-half.second-half .black-key {
+  width: 15.5555555556%;
+}
+.piano-app .keyboard .octave .black-keys .black-keys-half .black-key {
+  background-color: black;
+  color: white;
+}
+.piano-app .keyboard .octave .black-keys .black-keys-half .black-key:active {
+  background-color: #555;
+}
+.piano-app .keyboard .octave .key {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.piano-app .keyboard .octave .key .note {
+  font-size: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 /*# sourceMappingURL=styles.css.map */
