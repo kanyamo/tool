@@ -4,5 +4,5 @@
 staticfiles/
 db.sqlite3
 migrations/
+media/
 !media/default/
-

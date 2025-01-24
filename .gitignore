@@ -1,9 +1,6 @@
 # 環境変数
 .env
 
-# 仮想環境フォルダ
-.venv/
-
 *.log
 *.pot
 *.pyc
@@ -11,14 +8,8 @@
 __pychache__/
 db-volumes/
 logs/
-media/*
-staticfiles/
-db.sqlite3
-migrations/
-!media/default/
-
-# 実際のモジュールが格納されているフォルダ
-node_modules/
 
 # vscodeの設定ファイル
 .vscode/
+
+.DS_Store
