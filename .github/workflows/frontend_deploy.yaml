@@ -42,6 +42,8 @@ jobs:
           chmod 600 private_key.pem
 
           # known_hostsファイルを作成してホストキーを登録
+          mkdir -p ~/.ssh
+          if [ ! -f ~/.ssh/known_hosts ]; then touch ~/.ssh/known_hosts; fi
           ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
 
           # rsyncでデプロイ
