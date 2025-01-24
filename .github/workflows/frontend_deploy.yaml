@@ -1,0 +1,45 @@
+name: Build and Deploy Frontend
+
+on:
+  push:
+    branches:
+      - main # mainブランチへのプッシュをトリガー
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # コードをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Node.js をセットアップ
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 23 # プロジェクトに応じてNode.jsのバージョンを変更
+
+      # 依存関係をインストール
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm install
+
+      # ビルドを実行
+      - name: Build React project
+        working-directory: frontend
+        run: npm run build
+
+      # ビルドフォルダの内容をEC2に送信
+      - name: Deploy to EC2
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }} # GitHub Secretsに秘密鍵を設定
+          EC2_USER: ubuntu
+          EC2_HOST: ${{ secrets.EC2_HOST }} # EC2のホスト名またはIPアドレス
+        run: |
+          echo "$SSH_PRIVATE_KEY" > private_key.pem
+          chmod 600 private_key.pem
+          rsync -avz -e "ssh -i private_key.pem" \
+            frontend/build/ \
+            $EC2_USER@$EC2_HOST:/home/ubuntu/tools/frontend/build/
+          rm private_key.pem
