@@ -30,16 +30,24 @@ jobs:
         working-directory: frontend
         run: npm run build
 
-      # ビルドフォルダの内容をEC2に送信
+      # EC2にデプロイ
       - name: Deploy to EC2
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }} # GitHub Secretsに秘密鍵を設定
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
           EC2_USER: ubuntu
-          EC2_HOST: ${{ secrets.EC2_HOST }} # EC2のホスト名またはIPアドレス
+          EC2_HOST: ${{ secrets.EC2_HOST }}
         run: |
+          # SSH秘密鍵の設定
           echo "$SSH_PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
+
+          # known_hostsファイルを作成してホストキーを登録
+          ssh-keyscan -H $EC2_HOST >> ~/.ssh/known_hosts
+
+          # rsyncでデプロイ
           rsync -avz -e "ssh -i private_key.pem" \
             frontend/build/ \
             $EC2_USER@$EC2_HOST:/home/ubuntu/tools/frontend/build/
+
+          # 秘密鍵を削除
           rm private_key.pem
